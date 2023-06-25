@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bad UI Design - Volume by ChatGPT</title>
+  <style>
+    .seesaw {
+      position: relative;
+      width: 200px;
+      height: 30px;
+      background-color: #ddd;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .handle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 50px;
+      background-color: #ff0000;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: left 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="seesaw">
+    <div class="handle"></div>
+  </div>
+
+  <script>
+    const seesaw = document.querySelector('.seesaw');
+    const handle = document.querySelector('.handle');
+
+    seesaw.addEventListener('mousemove', function (e) {
+      const xPos = e.pageX - seesaw.offsetLeft;
+      const halfWidth = seesaw.offsetWidth / 2;
+      const maxOffset = seesaw.offsetWidth - handle.offsetWidth;
+
+      handle.style.left = `${Math.min(Math.max(xPos - halfWidth, -halfWidth), maxOffset - halfWidth)}px`;
+    });
+  </script>
+</body>
+</html>
